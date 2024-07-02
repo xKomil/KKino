@@ -1,0 +1,721 @@
+/* (A) GLOBAL */
+* {
+  font-family: Poppins, sans-serif;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: #565d66;
+}
+
+/* (B) SIDEBAR */
+/* (B1) SIDEBAR ITSELF */
+#pgside {
+  width: 200px;
+  flex-shrink: 0;
+  transition: width 0.2s;
+  background: #283039;
+}
+
+/* (B2) USER OR BRANDING */
+#pguser {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+}
+#pguser img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+/* (B3) SIDEBAR ITEMS */
+#pgside,
+#pgside a {
+  color: #fff;
+}
+#pgside a {
+  display: block;
+  padding: 20px;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* (B4) SIDEBAR ICONS & TEXT */
+#pgside i.ico,
+#pgside i.txt {
+  font-style: normal;
+}
+#pgside i.ico {
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+
+/* (B5) SMALL SCREEN TRANSFORMATION */
+@media screen and (max-width:768px) {
+  #pgside {
+    width: 70px;
+  }
+  #pgside i.txt {
+    display: none;
+  }
+  #pgside i.ico {
+    font-size: 1.5em;
+    margin-right: 0;
+  }
+  #pguser {
+    justify-content: center;
+  }
+  #pguser img {
+    margin-right: 0;
+  }
+  #pgside a {
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
+/* (B6) LOGOUT BUTTON */
+form[action=""] {
+  margin-top: auto;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+form[action=""] button {
+  border: none;
+  color: #000000;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  background-color: rgb(184, 27, 27);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form[action=""] button:hover {
+  color: #ccc;
+}
+
+form[action=""] button i {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+/* Styl dla nagłówka sekcji */
+.section-title-usermanagement {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Styl dla formularza edycji */
+#edit-form {
+  gap: 20px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styl dla pól formularza */
+#edit-form div {
+  margin-bottom: 15px;
+}
+
+#edit-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#edit-form input[type="text"],
+#edit-form input[type="email"],
+#edit-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Styl dla przycisków */
+#edit-form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#edit-form button[type="submit"] {
+  background-color: #048504;
+  color: white;
+}
+
+#edit-form button[type="submit"]:hover {
+  background-color: #09ff00;
+}
+
+#edit-form button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+#edit-form button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+/* Styl dla wyświetlania i ukrywania formularza */
+#edit-form[style="display: none;"] {
+  display: none;
+}
+
+/* (B7) SMALL SCREEN TRANSFORMATION FOR LOGOUT BUTTON */
+@media screen and (max-width:768px) {
+  form[action=""] button {
+    font-size: 1.5em;
+  }
+}
+
+/* (C) MAIN CONTENTS */
+main#pgmain-wiadomosci {
+  max-width: 1000px; /* Zwiększenie szerokości dla lepszego rozłożenia */
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+main#pgmain-wiadomosci h1 {
+  text-align: center;
+  color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+main#pgmain-wiadomosci .message-box {
+  max-height: 600px; /* Maksymalna wysokość boxa */
+  overflow-y: auto; /* Włączenie przewijania w pionie */
+  
+  background: linear-gradient(145deg, #f5f7fa, #e4e9f0);
+}
+
+main#pgmain-wiadomosci .message-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trzy wiadomości w jednym rzędzie */
+  gap: 20px;
+  
+}
+
+main#pgmain-wiadomosci .message {
+  background-color: #777; /* Kolor tła wiadomości dla lepszej widoczności */
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  background: linear-gradient(145deg, #34367a, #161616);
+}
+
+main#pgmain-wiadomosci .message-header {
+  background-color: #4b6c72; /* Tło nagłówka */
+  color: #fff; /* Kolor tekstu nagłówka */
+  padding: 10px;
+  text-align: center; /* Wyrównanie do środka */
+  border-radius: 5px;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+main#pgmain-wiadomosci .message-body {
+  flex-grow: 1; /* Zapewnia, że treść zajmuje dostępne miejsce */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2em;
+  color: #fff; /* Kolor tekstu */
+  word-break: break-word; /* Przerywa długie ciągi tekstowe */
+  overflow-wrap: anywhere; /* Umożliwia łamanie długich ciągów w dowolnym miejscu */
+}
+
+
+
+main#pgmain-bilety {
+  max-width: 300px;
+  max-height: 400px;
+  margin: 20px auto;
+  margin-top: 10%;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+main#pgmain-bilety h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+main#pgmain-bilety form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+main#pgmain-bilety label {
+  font-weight: bold;
+}
+
+main#pgmain-bilety select,
+main#pgmain-bilety input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+main#pgmain-bilety button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+main#pgmain-bilety button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* filmy */
+
+/* Główna sekcja */
+main#pgmain-filmy {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #565d66;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Nagłówki */
+main#pgmain-filmy h1, 
+main#pgmain-filmy h2 {
+  text-align: center;
+  color: #f7f7f7;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Pole wiadomości */
+main#pgmain-filmy .message-box {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  background-color: #565d66;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Formularz dodawania filmu */
+.main-add-movie {
+  background-color: #565d66;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  max-width: 50%; /* Zmniejszono szerokość o połowę */
+  margin: 0 auto; /* Wyśrodkowanie */
+}
+
+.main-add-movie form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.main-add-movie form input[type="text"], 
+.main-add-movie form textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  text-align: center;
+  background: #cacaca;
+}
+
+.main-add-movie form button {
+  background: linear-gradient(to bottom right, #f8b500 , #cfcca5);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.main-add-movie form button:hover {
+  background-color: #0056b3;
+}
+
+/* Sekcja edycji i usuwania filmów */
+.main-edit-movie {
+  padding: 20px;
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.main-edit-movie table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-edit-movie table th, 
+.main-edit-movie table td {
+  padding: 15px;
+  border: 1px solid #ccc;
+  text-align: left;
+  vertical-align: top;
+  background-color: #5c636e;
+  color: #f7f7f7;
+}
+
+
+
+.main-edit-movie table th {
+  background-color: #393e46;  
+  color: white;
+  text-transform: uppercase;
+}
+
+.main-edit-movie table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.main-edit-movie table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.main-edit-movie table tbody td img {
+  max-width: 120px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+
+
+.main-edit-movie table tbody td form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.main-edit-movie table tbody td form input[type="text"], 
+.main-edit-movie table tbody td form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9em;
+  background: #fff;
+  width: 100%;
+}
+
+.main-edit-movie table tbody td form button {
+  
+  background: linear-gradient(to bottom right, #f8b500 , #cfcca5);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.main-edit-movie table tbody td form button:hover {
+  background-color: #c82333;
+}
+
+/* Zintegrowane przyciski edycji i usuwania */
+.main-edit-movie table tbody td form button.delete-movie {
+  background-color: #c82333;
+}
+
+.main-edit-movie table tbody td form button.delete-movie:hover {
+  background-color: #a71d2a;
+}
+
+
+#opisid {
+  resize: none;
+  width: 100%; /* Opcjonalnie: ustaw szerokość pola */
+  height: 150px; /* Opcjonalnie: ustaw wysokość pola */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#opisdrugi{
+  resize: none;
+  width: 400px; /* Opcjonalnie: ustaw szerokość pola */
+  height: 150px; /* Opcjonalnie: ustaw wysokość pola */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+}
+
+
+
+/* Stylizacja dla przycisku wylogowania */
+form button {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 15px;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #e74c3c;
+}
+
+form i.txt {
+  margin-left: 10px;
+}
+
+/* Stylizacja dla głównego obszaru */
+#pgmain {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+/* Stylizacja sekcji zarządzania użytkownikami */
+.user-management{
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10rem;
+  margin-top: -150px;
+
+}
+.container-usermanagement {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title-usermanagement {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Stylizacja wyszukiwarki */
+.search-container {
+  margin-bottom: 20px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #34495e;
+  color: white;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-primary-usermanagement {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary-usermanagement:hover {
+  background-color: #2980b9;
+}
+
+.btn-danger-usermanagement {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger-usermanagement:hover {
+  background-color: #c0392b;
+
+
+}
+
+/* Styl dla głównego kontenera */
+#pgmain-godziny {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-left: 35%;
+  height: 50vh;
+  background-color: #f4f4f4;
+}
+
+/* Styl dla kontenera formularza */
+.form-container {
+  background-color: white;
+  padding: 90px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center; /* Dodaj tekst wyśrodkowany */
+}
+
+/* Styl dla nagłówka */
+.form-container h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Styl dla powiadomień */
+.notification {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  display: none; /* Ukryty domyślnie, wyświetlany przez JS */
+}
+
+/* Styl dla etykiet i pól formularza */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;             
+  font-weight: bold;
+  text-align: left; /* Tekst etykiet wyrównany do lewej */
+}
+
+.form-container input[type="date"],
+.form-container input[type="time"],
+.form-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Styl dla przycisku */
+.form-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-container input[type="submit"]:hover {
+  background-color: #0056b3;
+}

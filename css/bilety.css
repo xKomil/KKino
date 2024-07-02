@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
+
+:root {
+    --dark-blue: color(0, 0, 0);
+    --white-gr: #c4c3ca;
+    --yellow: #ffeba7;
+    --yellow-2: #f8ab37;
+    color: var(--citrine);
+}
+
+#tv-series {
+    padding: 60px 0;
+    background-color: var(--dark-blue);
+}
+
+#tv-series .section-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white-gr);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#tv-series .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--yellow);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#tv-series .movies-list {
+    list-style: none;
+    padding: 0;
+    padding-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#tv-series .movies-list li {
+    width: calc(33.333% - 40px); /* Three items per row */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ticket {
+    background: var(--dark-blue);
+    border: 1px solid var(--yellow-2);
+    border-radius: 8px;
+    padding: 50px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 250ms linear;
+}
+
+.ticket:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-content {
+    position: relative;
+    z-index: 1;
+}
+
+.ticket p {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    color: var(--white-gr);
+}
+
+.ticket p:first-child {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--yellow);
+}
+
+.notch {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--dark-blue);
+    border: 1px solid var(--yellow-2);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notch:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--dark-blue);
+    border: 1px solid var(--yellow-2);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notch:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--dark-blue);
+    border: 1px solid var(--yellow-2);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
